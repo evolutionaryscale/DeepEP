@@ -53,10 +53,7 @@ if __name__ == '__main__':
         include_dirs.extend([f'{nvshmem_dir}/include'])
         library_dirs.extend([f'{nvshmem_dir}/lib'])
         nvcc_dlink.extend(['-dlink', f'-L{nvshmem_dir}/lib', '-lnvshmem_device'])
-        # $ORIGIN-relative RPATH so the wheel is relocatable.
-        # deep_ep_cpp.so lands in site-packages/; nvidia/nvshmem/lib/ is relative to that.
-        extra_link_args.extend([f'-l:{nvshmem_host_lib}', '-l:libnvshmem_device.a',
-                                f'-Wl,-rpath,$ORIGIN/nvidia/nvshmem/lib'])
+        extra_link_args.extend([f'-l:{nvshmem_host_lib}', '-l:libnvshmem_device.a', f'-Wl,-rpath,{nvshmem_dir}/lib'])
 
     if int(os.getenv('DISABLE_SM90_FEATURES', 0)):
         # Prefer A100

@@ -2,13 +2,6 @@
 requires = ["setuptools", "torch"]
 build-backend = "setuptools.build_meta"
 
-[project]
-name = "deep_ep"
-dynamic = ["version"]
-dependencies = [
-    "nvidia-nvshmem-cu12>=3.5.19",
-]
-
 [tool.yapf]
 based_on_style = "pep8"
 column_limit = 140
